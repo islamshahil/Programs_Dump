@@ -27,25 +27,38 @@ public:
 
 class Solution {
 public:
-    int fact(int n){
-    int fac=1;
-    for(int i=1;i<=n;i++){
-        fac=fac*i;
+    long long ncr(int n, int r)
+    {
+    long long p = 1, k = 1;
+    if (n - r < r)
+        r = n - r;
+    if (r != 0)
+    {
+        while (r)
+        {
+            p *= n;
+            k *= r;
+            long long m = __gcd(p, k);
+            p /= m;
+            k /= m;
+            n--;
+            r--;
+        }
     }
-return fac;
+    else
+        p = 1;
+    return p;
 }
-    int ncr(int n, int r){
-        int nCr=fact(n)/(fact(n-r)*fact(r));
-        return nCr;
-    }
+
     vector<vector<int>> generate(int rows) {
-      vector<vector<int>>ans(rows);
+        vector<vector<int>>ans(rows + 1);
         ans[0].push_back(1);
         for(int i = 1; i < rows; i++){
             for(int j = 0; j <= i; j++){
                 ans[i].push_back(ncr(i,j));
             }
         }
+        ans.pop_back();
         return ans;
     }
 };
