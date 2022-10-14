@@ -1,4 +1,4 @@
-//iven a Linked list, find the middle of the linked list.
+//Given a Linked list, find the middle of the linked list.
 
 #include<bits/stdc++.h>
 using namespace std;
